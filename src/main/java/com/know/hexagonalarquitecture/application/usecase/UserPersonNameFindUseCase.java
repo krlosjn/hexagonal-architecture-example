@@ -8,17 +8,17 @@ import java.util.List;
 
 
 @Component
-public class UserPersonNameUseCase {
+public class UserPersonNameFindUseCase {
 
 
     private final UserRepository repository;
 
-    public UserPersonNameUseCase(UserRepository userRepository){
+    public UserPersonNameFindUseCase(UserRepository userRepository){
         this.repository=userRepository;
     }
 
 
-    public List<UserPerson> listPersonName(String name){
+    public List<UserPerson> execute(String name){
         return this.repository.findUserName(name);
     }
 

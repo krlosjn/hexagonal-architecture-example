@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SaveUserUseCase {
 
-    public static final String EL_USUARIO_YA_SE_ENCUENTRA_REGISTRADO = "El usuario ya se encuentra registrado";
+    public static final String THE_USER_IS_ALREADR_REGISTERED = "El usuario ya se encuentra registrado";
     private final UserRepository userRepository;
 
     public SaveUserUseCase(UserRepository userRepository){
@@ -21,7 +21,7 @@ public class SaveUserUseCase {
 
     private void validateUserRepeat(UserPerson user) throws Exception {
         if(this.userRepository.userExist(user.getDniUser())!=null){
-            throw new UserRepeatException(EL_USUARIO_YA_SE_ENCUENTRA_REGISTRADO);
+            throw new UserRepeatException(THE_USER_IS_ALREADR_REGISTERED);
         }
     }
 }
