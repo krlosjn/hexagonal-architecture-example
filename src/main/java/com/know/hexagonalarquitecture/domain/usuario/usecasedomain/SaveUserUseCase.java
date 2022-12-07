@@ -15,12 +15,12 @@ public class SaveUserUseCase {
         this.userRepository=userRepository;
     }
     public UserPerson saveUser(UserPerson user) throws Exception {
-        validateUserRepeat(user);
+        //validateUserRepeat(user);
        return this.userRepository.saveUser(user);
     }
 
     private void validateUserRepeat(UserPerson user) throws Exception {
-        if(this.userRepository.userExist(user.getDniUser())){
+        if(this.userRepository.userExist(user.getDniUser())!=null){
             throw new UserRepeatException(EL_USUARIO_YA_SE_ENCUENTRA_REGISTRADO);
         }
     }

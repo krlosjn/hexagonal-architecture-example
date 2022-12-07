@@ -9,7 +9,7 @@ public interface UserRepository {
 
     UserPerson saveUser(UserPerson user);
 
-    boolean userExist(String dni);
+    UserPerson userExist(String dni);
 
     List<UserPerson> findUserName(String name);
 }

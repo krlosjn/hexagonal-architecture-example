@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserDataRepository extends JpaRepository<UserPersonData,Long> {
     @Transactional(readOnly=true)
-    boolean findById(String dni);
+    UserPersonData findByDniUser(String dniUser);
 
     @Transactional(readOnly = true)
     List<UserPersonData> findAllByName(String name);

@@ -38,8 +38,8 @@ public class UserRepositoryAdapter implements UserRepository {
     }
 
     @Override
-    public boolean userExist(String dni) {
-        return this.repository.findById(dni);
+    public UserPerson userExist(String dniUser) {
+        return this.dataMapper.toEntity(this.repository.findByDniUser(dniUser));
     }
 
     @Override
