@@ -1,4 +1,4 @@
-package com.know.hexagonalarquitecture.infrastructure.adapters.jparepository.usuario;
+package com.know.hexagonalarquitecture.infrastructure.adapters.jparepository.user;
 
 
 import javax.persistence.*;

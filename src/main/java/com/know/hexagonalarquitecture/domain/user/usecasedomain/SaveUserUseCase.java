@@ -1,8 +1,8 @@
-package com.know.hexagonalarquitecture.domain.usuario.usecasedomain;
+package com.know.hexagonalarquitecture.domain.user.usecasedomain;
 
-import com.know.hexagonalarquitecture.domain.usuario.exception.UserRepeatException;
-import com.know.hexagonalarquitecture.domain.usuario.model.UserPerson;
-import com.know.hexagonalarquitecture.domain.usuario.ports.UserRepository;
+import com.know.hexagonalarquitecture.domain.user.exception.UserRepeatException;
+import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
+import com.know.hexagonalarquitecture.domain.user.ports.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,13 +15,15 @@ public class SaveUserUseCase {
         this.userRepository=userRepository;
     }
     public UserPerson saveUser(UserPerson user) throws Exception {
-        //validateUserRepeat(user);
+        validateUserRepeat(user);
        return this.userRepository.saveUser(user);
     }
 
-    private void validateUserRepeat(UserPerson user) throws Exception {
-        if(this.userRepository.userExist(user.getDniUser())!=null){
+
+    private void validateUserRepeat(UserPerson userPerson){
+        if(this.userRepository.userExist(userPerson.getDniUser())){
             throw new UserRepeatException(THE_USER_IS_ALREADR_REGISTERED);
         }
+
     }
 }

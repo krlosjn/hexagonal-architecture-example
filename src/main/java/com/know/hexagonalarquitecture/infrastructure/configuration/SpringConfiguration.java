@@ -1,8 +1,8 @@
 package com.know.hexagonalarquitecture.infrastructure.configuration;
 
-import com.know.hexagonalarquitecture.application.usecase.ListUsersUseCase;
-import com.know.hexagonalarquitecture.domain.usuario.model.UserPersonBuilder;
-import com.know.hexagonalarquitecture.domain.usuario.ports.UserRepository;
+import com.know.hexagonalarquitecture.application.user.usecase.ListUsersUseCase;
+import com.know.hexagonalarquitecture.domain.user.model.UserPersonBuilder;
+import com.know.hexagonalarquitecture.domain.user.ports.UserRepository;
 import com.know.hexagonalarquitecture.infrastructure.adapters.jparepository.DataMapper;
 import com.know.hexagonalarquitecture.infrastructure.helpers.buildersdto.DetailObjectDtoBuilder;
 import com.know.hexagonalarquitecture.infrastructure.helpers.buildersdto.ObjectDtoBuilder;

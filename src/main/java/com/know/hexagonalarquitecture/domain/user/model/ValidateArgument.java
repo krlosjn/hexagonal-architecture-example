@@ -1,6 +1,6 @@
-package com.know.hexagonalarquitecture.domain.usuario.model;
+package com.know.hexagonalarquitecture.domain.user.model;
 
-import com.know.hexagonalarquitecture.domain.usuario.exception.UserMandatoryException;
+import com.know.hexagonalarquitecture.domain.user.exception.UserMandatoryException;
 
 public class ValidateArgument {
 

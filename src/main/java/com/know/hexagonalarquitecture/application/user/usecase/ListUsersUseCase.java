@@ -1,7 +1,7 @@
-package com.know.hexagonalarquitecture.application.usecase;
+package com.know.hexagonalarquitecture.application.user.usecase;
 
-import com.know.hexagonalarquitecture.domain.usuario.model.UserPerson;
-import com.know.hexagonalarquitecture.domain.usuario.ports.UserRepository;
+import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
+import com.know.hexagonalarquitecture.domain.user.ports.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

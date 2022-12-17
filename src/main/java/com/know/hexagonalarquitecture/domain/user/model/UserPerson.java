@@ -1,6 +1,6 @@
-package com.know.hexagonalarquitecture.domain.usuario.model;
+package com.know.hexagonalarquitecture.domain.user.model;
 
-import static com.know.hexagonalarquitecture.domain.usuario.model.ValidateArgument.validateMandatory;
+import static com.know.hexagonalarquitecture.domain.user.model.ValidateArgument.validateMandatory;
 
 public class UserPerson {
 

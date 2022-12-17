@@ -1,4 +1,4 @@
-package com.know.hexagonalarquitecture.domain.usuario.model;
+package com.know.hexagonalarquitecture.domain.user.model;
 
 public class UserPersonBuilder {
 

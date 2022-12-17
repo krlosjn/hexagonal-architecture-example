@@ -1,13 +1,14 @@
-package com.know.hexagonalarquitecture.infrastructure.adapters.jparepository.usuario;
+package com.know.hexagonalarquitecture.infrastructure.adapters.jparepository.user;
 
-import com.know.hexagonalarquitecture.domain.usuario.model.UserPerson;
-import com.know.hexagonalarquitecture.domain.usuario.ports.UserRepository;
+import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
+import com.know.hexagonalarquitecture.domain.user.ports.UserRepository;
 import com.know.hexagonalarquitecture.infrastructure.adapters.jparepository.DataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepositoryAdapter implements UserRepository {
@@ -37,20 +38,32 @@ public class UserRepositoryAdapter implements UserRepository {
         return this.dataMapper.toEntity(repository.save(this.dataMapper.toData(user)));
     }
 
+
     @Override
-    public UserPerson userExist(String dniUser) {
-        return this.dataMapper.toEntity(this.repository.findByDniUser(dniUser));
+    public boolean userExist(String dniUser) {
+        if(this.repository.findByDniUser(dniUser)!=null){
+            return true;
+        };
+        return  false;
     }
 
     @Override
-    public List<UserPerson> findUserName(String name) {
+    public UserPerson findUserName(String name) {
+        return this.dataMapper.toEntity(this.repository.findByName(name));
+    }
 
-        List<UserPerson> lsUser=new ArrayList<UserPerson>();
 
-       this.repository.findAllByName(name).stream()
-                .forEach(item -> {
-                    lsUser.add(this.dataMapper.toEntity(item));
-                });
-        return lsUser;
+    /**
+     * implementation for update one user
+     * */
+    @Override
+    public Optional<UserPerson> updateUserPerson(UserPerson userPerson, String dniUser) {
+         UserPerson userUpdate= repository.findByDniUser(dniUser).map(person->{
+            person.setName(userPerson.getName());
+            person.setLastName(userPerson.getLastName());
+            return saveUser(this.dataMapper.toEntity(person));
+        }).orElse(null);
+
+         return Optional.of(userUpdate);
     }
 }

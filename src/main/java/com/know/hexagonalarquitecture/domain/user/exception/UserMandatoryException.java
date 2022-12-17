@@ -1,4 +1,4 @@
-package com.know.hexagonalarquitecture.domain.usuario.exception;
+package com.know.hexagonalarquitecture.domain.user.exception;
 
 public class UserMandatoryException extends RuntimeException {
 

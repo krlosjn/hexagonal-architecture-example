@@ -1,8 +1,8 @@
 package com.know.hexagonalarquitecture.infrastructure.adapters.jparepository;
 
-import com.know.hexagonalarquitecture.domain.usuario.model.UserPerson;
-import com.know.hexagonalarquitecture.domain.usuario.model.UserPersonBuilder;
-import com.know.hexagonalarquitecture.infrastructure.adapters.jparepository.usuario.UserPersonData;
+import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
+import com.know.hexagonalarquitecture.domain.user.model.UserPersonBuilder;
+import com.know.hexagonalarquitecture.infrastructure.adapters.jparepository.user.UserPersonData;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

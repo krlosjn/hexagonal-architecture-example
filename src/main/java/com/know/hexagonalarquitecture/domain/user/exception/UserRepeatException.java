@@ -1,4 +1,4 @@
-package com.know.hexagonalarquitecture.domain.usuario.exception;
+package com.know.hexagonalarquitecture.domain.user.exception;
 
 public class UserRepeatException extends RuntimeException{
     private static final long serialVersionUID = 1L;

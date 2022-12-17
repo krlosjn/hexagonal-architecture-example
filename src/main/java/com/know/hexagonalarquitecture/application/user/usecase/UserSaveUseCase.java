@@ -1,8 +1,8 @@
-package com.know.hexagonalarquitecture.application.usecase;
+package com.know.hexagonalarquitecture.application.user.usecase;
 
 
-import com.know.hexagonalarquitecture.domain.usuario.model.UserPerson;
-import com.know.hexagonalarquitecture.domain.usuario.usecasedomain.SaveUserUseCase;
+import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
+import com.know.hexagonalarquitecture.domain.user.usecasedomain.SaveUserUseCase;
 import org.springframework.stereotype.Component;
 
 @Component
