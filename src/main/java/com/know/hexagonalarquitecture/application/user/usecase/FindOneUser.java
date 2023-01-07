@@ -5,18 +5,18 @@ import com.know.hexagonalarquitecture.domain.user.ports.UserRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FindUserNameUseCase {
+public class FindOneUser {
 
 
     private final UserRepository repository;
 
-    public FindUserNameUseCase(UserRepository userRepository){
+    public FindOneUser(UserRepository userRepository){
         this.repository=userRepository;
     }
 
 
-    public UserPerson execute(String name){
-        return this.repository.findUserName(name);
+    public UserPerson execute(Long id){
+        return this.repository.findOneUser(id);
     }
 
 

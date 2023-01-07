@@ -21,8 +21,8 @@ public class SaveUserUseCase {
 
 
     private void validateUserRepeat(UserPerson userPerson){
-        if(this.userRepository.userExist(userPerson.getDniUser())){
-            throw new UserRepeatException(THE_USER_IS_ALREADR_REGISTERED);
+        if(this.userRepository.userExist(userPerson.getId())){
+            throw new UserRepeatException(THE_USER_IS_ALREADR_REGISTERED + " dniUser " + userPerson.getDniUser() + " id usuari " + userPerson.getId());
         }
 
     }

@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface UserRepository {
     List<UserPerson> listUsers();
     UserPerson saveUser(UserPerson user);
-    boolean userExist(String dniUser);
-    UserPerson findUserName(String name);
-    Optional<UserPerson> updateUserPerson(UserPerson userPerson, String dniUser);
+    boolean userExist(Long id);
+    UserPerson findOneUser(Long id);
+    UserPerson updateUserPerson(UserPerson userPerson, Long id);
 
 }

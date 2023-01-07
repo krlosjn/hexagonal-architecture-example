@@ -15,8 +15,8 @@ public class UpdateUserUseCase {
         this.updateUserPersonUseCase = updateUserPersonUseCase;
     }
 
-    public Optional<UserPerson> execute(UserPerson userPerson, String dniUser){
-       return this.updateUserPersonUseCase.updateUser(userPerson,dniUser);
+    public UserPerson execute(UserPerson userPerson, Long id){
+       return this.updateUserPersonUseCase.updateUser(userPerson,id);
     }
 
 }

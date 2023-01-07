@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class UserRepositoryAdapter implements UserRepository {
@@ -38,32 +37,31 @@ public class UserRepositoryAdapter implements UserRepository {
         return this.dataMapper.toEntity(repository.save(this.dataMapper.toData(user)));
     }
 
-
     @Override
-    public boolean userExist(String dniUser) {
-        if(this.repository.findByDniUser(dniUser)!=null){
+    public boolean userExist(Long id) {
+        if(this.repository.existsUserById(id)){
             return true;
-        };
-        return  false;
+        }
+        return false;
     }
 
     @Override
-    public UserPerson findUserName(String name) {
-        return this.dataMapper.toEntity(this.repository.findByName(name));
+    public UserPerson findOneUser(Long id) {
+        return dataMapper.toEntity(this.repository.findById(id).get());
     }
 
 
-    /**
-     * implementation for update one user
-     * */
     @Override
-    public Optional<UserPerson> updateUserPerson(UserPerson userPerson, String dniUser) {
-         UserPerson userUpdate= repository.findByDniUser(dniUser).map(person->{
+    public UserPerson updateUserPerson(UserPerson userPerson, Long id) {
+
+        UserPerson userUpdate = repository.findById(id).map(person->{
             person.setName(userPerson.getName());
             person.setLastName(userPerson.getLastName());
-            return saveUser(this.dataMapper.toEntity(person));
+            person.setDniUser(userPerson.getDniUser());
+            return dataMapper.toEntity(repository.save(person));
         }).orElse(null);
 
-         return Optional.of(userUpdate);
+        return userUpdate;
     }
+
 }

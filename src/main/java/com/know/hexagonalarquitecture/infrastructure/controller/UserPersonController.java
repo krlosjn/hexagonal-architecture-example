@@ -1,7 +1,7 @@
 package com.know.hexagonalarquitecture.infrastructure.controller;
 
 import com.know.hexagonalarquitecture.application.user.usecase.ListUsersUseCase;
-import com.know.hexagonalarquitecture.application.user.usecase.FindUserNameUseCase;
+import com.know.hexagonalarquitecture.application.user.usecase.FindOneUser;
 import com.know.hexagonalarquitecture.application.user.usecase.UpdateUserUseCase;
 import com.know.hexagonalarquitecture.application.user.usecase.UserSaveUseCase;
 import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
@@ -21,17 +21,17 @@ public class UserPersonController {
 
     private final UserSaveUseCase userSaveUseCase;
     private final ListUsersUseCase listUsersUseCase;
-    private final FindUserNameUseCase findUserNameUseCase;
+    private final FindOneUser findOneUser;
     private final UpdateUserUseCase updateUserUseCase;
     private final DataFactory dataFactory;
 
 
 
-    public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory, ListUsersUseCase listUsersUseCase, FindUserNameUseCase userPersonNameFindUseCase,UpdateUserUseCase updateUserUseCase){
+    public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory, ListUsersUseCase listUsersUseCase, FindOneUser findOneUser, UpdateUserUseCase updateUserUseCase){
         this.userSaveUseCase=userSaveUseCase;
         this.dataFactory=dataFactory;
         this.listUsersUseCase=listUsersUseCase;
-        this.findUserNameUseCase =userPersonNameFindUseCase;
+        this.findOneUser =findOneUser;
         this.updateUserUseCase=updateUserUseCase;
     }
 
@@ -50,25 +50,17 @@ public class UserPersonController {
                 .buildResponse("Consultar usuarios",Arrays.asList(this.listUsersUseCase.execute()),null),HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ObjectDto> updatingUser(@RequestBody UserPerson user, @PathVariable("id") Long id){
 
-
-    @PutMapping("/{dniUser}")
-    public ResponseEntity<ObjectDto> updatingUser(@RequestBody UserPerson user, @RequestParam("dniUser") String dniUser){
-
-        return new ResponseEntity<>(this.dataFactory.buildResponse("Usuario actualizado ", Arrays.asList(this.updateUserUseCase.execute(user,dniUser)),null),HttpStatus.OK);
+        return new ResponseEntity<>(this.dataFactory.buildResponse("Usuario actualizado ", Arrays.asList(this.updateUserUseCase.execute(user,id)),null),HttpStatus.OK);
     }
 
-
-
-    /**
-     * use case incomplete for now
-     *
-     * */
-    @GetMapping(value="/detail/{name}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ObjectDto> listUserByName(@RequestParam(value="name") String name){
+    @GetMapping(value="/detail/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ObjectDto> listUserByName(@PathVariable(value="id") Long id){
 
         return new ResponseEntity<>( this.dataFactory
-                .buildResponse("Consultar usuarios",Arrays.asList(this.findUserNameUseCase.execute(name)),null),HttpStatus.OK);
+                .buildResponse("Consultar usuarios",Arrays.asList(this.findOneUser.execute(id)),null),HttpStatus.OK);
     }
 
 }

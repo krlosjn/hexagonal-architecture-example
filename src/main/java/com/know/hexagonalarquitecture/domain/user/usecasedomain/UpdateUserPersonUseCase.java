@@ -5,7 +5,6 @@ import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
 import com.know.hexagonalarquitecture.domain.user.ports.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class UpdateUserPersonUseCase {
@@ -17,13 +16,13 @@ public class UpdateUserPersonUseCase {
         this.userRepository = userRepository;
     }
 
-    public Optional<UserPerson> updateUser(UserPerson userPerson, String dniUser){
-        validateIfUserExist(dniUser);
-        return this.userRepository.updateUserPerson(userPerson,dniUser);
+    public UserPerson updateUser(UserPerson userPerson, Long id){
+        validateIfUserExist(id);
+        return this.userRepository.updateUserPerson(userPerson,id);
     }
 
-    private void validateIfUserExist(String dniUser){
-        if(!this.userRepository.userExist(dniUser)){
+    private void validateIfUserExist(Long id){
+        if(!this.userRepository.userExist(id)){
             throw  new UserNotFoundException(USER_IT_CANTBE_UPDATE);
         }
     }
