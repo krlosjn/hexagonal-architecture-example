@@ -6,12 +6,12 @@ import com.know.hexagonalarquitecture.domain.user.ports.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SaveUserUseCase {
+public class SaveUserUseCaseDomain {
 
     public static final String THE_USER_IS_ALREADR_REGISTERED = "El usuario ya se encuentra registrado";
     private final UserRepository userRepository;
 
-    public SaveUserUseCase(UserRepository userRepository){
+    public SaveUserUseCaseDomain(UserRepository userRepository){
         this.userRepository=userRepository;
     }
     public UserPerson saveUser(UserPerson user) throws Exception {

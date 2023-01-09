@@ -64,4 +64,9 @@ public class UserRepositoryAdapter implements UserRepository {
         return userUpdate;
     }
 
+    @Override
+    public void deleteUser(Long id) {
+        this.repository.deleteById(id);
+    }
+
 }

@@ -1,9 +1,6 @@
 package com.know.hexagonalarquitecture.infrastructure.controller;
 
-import com.know.hexagonalarquitecture.application.user.usecase.ListUsersUseCase;
-import com.know.hexagonalarquitecture.application.user.usecase.FindOneUser;
-import com.know.hexagonalarquitecture.application.user.usecase.UpdateUserUseCase;
-import com.know.hexagonalarquitecture.application.user.usecase.UserSaveUseCase;
+import com.know.hexagonalarquitecture.application.user.usecase.*;
 import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
 import com.know.hexagonalarquitecture.infrastructure.helpers.dto.DataFactory;
 import com.know.hexagonalarquitecture.infrastructure.helpers.dto.ObjectDto;
@@ -25,14 +22,17 @@ public class UserPersonController {
     private final UpdateUserUseCase updateUserUseCase;
     private final DataFactory dataFactory;
 
+    private final DeleteUserUseCase deleteUserUseCase;
 
 
-    public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory, ListUsersUseCase listUsersUseCase, FindOneUser findOneUser, UpdateUserUseCase updateUserUseCase){
+
+    public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory, ListUsersUseCase listUsersUseCase, FindOneUser findOneUser, UpdateUserUseCase updateUserUseCase, DeleteUserUseCase deleteUserUseCase){
         this.userSaveUseCase=userSaveUseCase;
         this.dataFactory=dataFactory;
         this.listUsersUseCase=listUsersUseCase;
         this.findOneUser =findOneUser;
         this.updateUserUseCase=updateUserUseCase;
+        this.deleteUserUseCase=deleteUserUseCase;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,4 +63,8 @@ public class UserPersonController {
                 .buildResponse("Consultar usuarios",Arrays.asList(this.findOneUser.execute(id)),null),HttpStatus.OK);
     }
 
+    @DeleteMapping(value="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> deleteUser(@PathVariable(value="id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(this.deleteUserUseCase.execute(id));
+    }
 }

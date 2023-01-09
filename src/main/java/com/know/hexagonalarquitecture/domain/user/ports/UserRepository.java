@@ -11,5 +11,6 @@ public interface UserRepository {
     boolean userExist(Long id);
     UserPerson findOneUser(Long id);
     UserPerson updateUserPerson(UserPerson userPerson, Long id);
+    void deleteUser(Long id);
 
 }

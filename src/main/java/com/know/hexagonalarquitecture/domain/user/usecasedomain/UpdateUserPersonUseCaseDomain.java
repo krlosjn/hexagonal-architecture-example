@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class UpdateUserPersonUseCase {
+public class UpdateUserPersonUseCaseDomain {
 
     public static final String USER_IT_CANTBE_UPDATE = "El usuario no se puede actualizar por que no está registrado";
     private final UserRepository userRepository;
 
-    public UpdateUserPersonUseCase(UserRepository userRepository) {
+    public UpdateUserPersonUseCaseDomain(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

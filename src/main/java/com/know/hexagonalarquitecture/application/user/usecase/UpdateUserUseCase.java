@@ -1,17 +1,15 @@
 package com.know.hexagonalarquitecture.application.user.usecase;
 
 import com.know.hexagonalarquitecture.domain.user.model.UserPerson;
-import com.know.hexagonalarquitecture.domain.user.usecasedomain.UpdateUserPersonUseCase;
+import com.know.hexagonalarquitecture.domain.user.usecasedomain.UpdateUserPersonUseCaseDomain;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class UpdateUserUseCase {
 
-    private final UpdateUserPersonUseCase updateUserPersonUseCase;
+    private final UpdateUserPersonUseCaseDomain updateUserPersonUseCase;
 
-    public UpdateUserUseCase(UpdateUserPersonUseCase updateUserPersonUseCase) {
+    public UpdateUserUseCase(UpdateUserPersonUseCaseDomain updateUserPersonUseCase) {
         this.updateUserPersonUseCase = updateUserPersonUseCase;
     }
 
