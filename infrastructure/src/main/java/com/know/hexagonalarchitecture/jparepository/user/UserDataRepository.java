@@ -12,6 +12,6 @@ public interface UserDataRepository extends JpaRepository<UserPersonData,Long> {
     UserPersonData findByName(String name);
 
     @Transactional
-    boolean existsUserById(Long id);
+    boolean existsUserByIdUser(Long id);
 
 }

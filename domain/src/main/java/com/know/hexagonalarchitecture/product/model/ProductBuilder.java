@@ -2,15 +2,16 @@ package com.know.hexagonalarchitecture.product.model;
 
 public class ProductBuilder {
 
-    private Long id;
+    private Long idProduct;
     private String name;
     private double price;
+
 
     public ProductBuilder(){}
 
 
     public ProductBuilder withId(Long id){
-        this.id=id;
+        this.idProduct =id;
         return this;
     }
 
@@ -24,7 +25,8 @@ public class ProductBuilder {
         return this;
     }
 
+
     public Product build(){
-        return new Product(id,name,price);
+        return new Product(idProduct,name,price);
     };
 }

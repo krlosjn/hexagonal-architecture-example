@@ -1,8 +1,12 @@
 package com.know.hexagonalarchitecture.user.model;
 
+import com.know.hexagonalarchitecture.product.model.Product;
+
+import java.util.List;
+
 public class UserPersonBuilder {
 
-    private Long id;
+    private Long idUser;
 
     private String name;
 
@@ -10,10 +14,12 @@ public class UserPersonBuilder {
 
     private String dniUser;
 
+    private List<Product> products;
+
     public  UserPersonBuilder(){}
 
     public UserPersonBuilder withId(Long id){
-        this.id=id;
+        this.idUser =id;
         return this;
     }
 
@@ -34,9 +40,14 @@ public class UserPersonBuilder {
         return this;
     }
 
+    public UserPersonBuilder withProducts(List<Product> products){
+        this.products=products;
+        return  this;
+    }
+
 
     public UserPerson build(){
-        return new UserPerson(id,name,lastName,dniUser);
+        return new UserPerson(idUser,name,lastName,dniUser,products);
     }
 
 }

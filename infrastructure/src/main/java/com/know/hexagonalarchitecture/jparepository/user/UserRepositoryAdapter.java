@@ -7,8 +7,8 @@ import com.know.hexagonalarchitecture.user.ports.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Repository
@@ -26,12 +26,16 @@ public class UserRepositoryAdapter implements UserRepository {
 
 
     @Override
-    public List<UserPerson> listUsers() {
-       List<UserPerson> lsPerson= new ArrayList<UserPerson>();
-        this.repository.findAll().stream().forEach(item ->{
-            lsPerson.add(this.dataMapper.toEntity(item));
-        });
-        return lsPerson;
+    public List<UserPerson> listUsers(){
+        return this.repository.findAll().stream()
+                .map(user-> this.dataMapper.toEntity(user))
+                .collect(Collectors.toList());
+    }
+
+    public List<UserPerson> listUsers2(){
+        return this.repository.findAll().stream()
+                .map(user->this.dataMapper.toEntity(user))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -41,7 +45,7 @@ public class UserRepositoryAdapter implements UserRepository {
 
     @Override
     public boolean userExist(Long id) {
-        if(this.repository.existsUserById(id)){
+        if(this.repository.existsUserByIdUser(id)){
             return true;
         }
         return false;
@@ -60,6 +64,7 @@ public class UserRepositoryAdapter implements UserRepository {
             person.setName(userPerson.getName());
             person.setLastName(userPerson.getLastName());
             person.setDniUser(userPerson.getDniUser());
+            person.setProducts(userPerson.getProducts().stream().map(item->this.dataMapper.toData(item)).collect(Collectors.toList()));
             return dataMapper.toEntity(repository.save(person));
         }).orElse(null);
 

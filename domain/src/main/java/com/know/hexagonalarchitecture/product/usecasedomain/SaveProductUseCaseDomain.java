@@ -23,8 +23,8 @@ public class SaveProductUseCaseDomain {
 
 
     private void validateProductRepeat(Product product){
-        if(repository.productExist(product.getId())){
-            throw new ProductRepeatException(PRODUCT_REPEAT + product.getId() );
+        if(repository.productExist(product.getIdProduct())){
+            throw new ProductRepeatException(PRODUCT_REPEAT + product.getIdProduct() );
         }
     }
 }

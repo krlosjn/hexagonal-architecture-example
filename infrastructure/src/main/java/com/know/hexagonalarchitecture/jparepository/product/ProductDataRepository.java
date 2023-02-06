@@ -5,5 +5,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface ProductDataRepository extends JpaRepository<ProductData,Long> {
     @Transactional
-    boolean existsProductById(Long id);
+    boolean existsProductByIdProduct(Long id);
 }

@@ -36,12 +36,12 @@ public class ProductRepositoryAdapter implements ProductRepository {
 
     @Override
     public Product findOneProduct(Long id) {
-        return null;
+        return  this.mapper.toEntity(this.repository.findById(id).get());
     }
 
     @Override
     public boolean productExist(Long id) {
-        if(this.repository.existsProductById(id)){
+        if(this.repository.existsProductByIdProduct(id)){
             return true;
         }
         return false;

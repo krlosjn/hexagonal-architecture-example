@@ -7,49 +7,65 @@ import com.know.hexagonalarchitecture.product.model.Product;
 import com.know.hexagonalarchitecture.product.model.ProductBuilder;
 import com.know.hexagonalarchitecture.user.model.UserPerson;
 import com.know.hexagonalarchitecture.user.model.UserPersonBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class DataMapper {
-    @Autowired
-    private final UserPersonBuilder userPersonBuilder;
-    private final ProductBuilder productBuilder;
+
+
+    private  static UserPersonBuilder userPersonBuilder=null;
+    private static ProductBuilder productBuilder=null;
 
     public DataMapper(UserPersonBuilder userPersonBuilder,ProductBuilder productBuilder){
     this.userPersonBuilder=userPersonBuilder;
     this.productBuilder=productBuilder;
    }
-    public UserPerson toEntity(UserPersonData userPersonData){
+    public static UserPerson toEntity(UserPersonData userPersonData){
 
-       return  userPersonBuilder.withId(userPersonData.getId())
+
+
+       return  userPersonBuilder.withId(userPersonData.getIdUser())
                 .withName(userPersonData.getName())
                 .withLastName(userPersonData.getLastName())
-                .withDniUser(userPersonData.getDniUser()).build();
+                .withDniUser(userPersonData.getDniUser())
+                .withProducts(Objects.isNull(userPersonData.getProducts()) || userPersonData.getProducts().isEmpty()
+                       ? null
+                       : userPersonData.getProducts().stream().map(DataMapper::toEntity).collect(Collectors.toList())
+                )
+                .build();
     };
 
-    public  UserPersonData toData(UserPerson userPerson){
+    public static  UserPersonData toData(UserPerson userPerson){
 
         UserPersonData data= new UserPersonData();
 
-        data.setId(userPerson.getId());
+        data.setIdUser(userPerson.getIdUser());
         data.setName(userPerson.getName());
         data.setLastName(userPerson.getLastName());
         data.setDniUser(userPerson.getDniUser());
+        data.setProducts(Objects.isNull(userPerson.getProducts()) || userPerson.getProducts().isEmpty()
+                ? null
+                : userPerson.getProducts().stream().map(DataMapper::toData).collect(Collectors.toList())
+        );
         return data;
     };
 
-    public Product toEntity(ProductData data){
-        return productBuilder.withId(data.getId())
+    public static Product toEntity(ProductData data){
+        return productBuilder.withId(data.getIdProduct())
                 .withName(data.getName())
                 .withPrice(data.getPrice())
                 .build();
     }
 
-    public ProductData toData(Product product){
+    public static ProductData toData(Product product){
+
         ProductData data= new ProductData();
-        data.setId(product.getId());
+
+        data.setIdProduct(product.getIdProduct());
         data.setName(product.getName());
         data.setPrice(product.getPrice());
+
         return data;
     }
 }

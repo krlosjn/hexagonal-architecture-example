@@ -1,32 +1,38 @@
 package com.know.hexagonalarchitecture.jparepository.product;
 
 
+import com.know.hexagonalarchitecture.jparepository.user.UserPersonData;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="Producto")
+@Table(name="PRODUCTO")
 public class ProductData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_producto",nullable = false)
-    private Long id;
+    @Column(name="ID_PRODUCTO",nullable = false)
+    private Long idProduct;
 
-    @Column(name="nombre_producto", nullable = false)
+    @Column(name="NOMBRE_PRODUCTO", nullable = false)
     private String name;
 
-    @Column(name="Precio")
+    @Column(name="PRECIO")
     private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_USUARIO", insertable = false, updatable = false)
+    private UserPersonData idUser;
 
     public ProductData(){
 
     }
 
-    public void setId(Long id){
-        this.id=id;
+    public void setIdProduct(Long idProduct){
+        this.idProduct = idProduct;
     }
-    public Long getId(){
-        return this.id;
+    public Long getIdProduct(){
+        return this.idProduct;
     }
     public void setName(String name){
         this.name=name;
@@ -39,5 +45,14 @@ public class ProductData {
     }
     public double getPrice(){
         return this.price;
+    }
+
+
+    public UserPersonData getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(UserPersonData idUser) {
+        this.idUser = idUser;
     }
 }
