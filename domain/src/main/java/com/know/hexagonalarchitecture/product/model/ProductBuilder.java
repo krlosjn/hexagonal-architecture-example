@@ -6,6 +6,7 @@ public class ProductBuilder {
     private String name;
     private double price;
 
+    private Long idUser;
 
     public ProductBuilder(){}
 
@@ -25,8 +26,14 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder withIdUser(Long idUser){
+        this.idUser=idUser;
+        return this;
+    }
+
+
 
     public Product build(){
-        return new Product(idProduct,name,price);
+        return new Product(idProduct,name,price,idUser);
     };
 }

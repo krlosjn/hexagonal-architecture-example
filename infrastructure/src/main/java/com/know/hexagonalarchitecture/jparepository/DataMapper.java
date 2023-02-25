@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 public class DataMapper {
 
-
     private  static UserPersonBuilder userPersonBuilder=null;
     private static ProductBuilder productBuilder=null;
 
@@ -22,8 +21,6 @@ public class DataMapper {
     this.productBuilder=productBuilder;
    }
     public static UserPerson toEntity(UserPersonData userPersonData){
-
-
 
        return  userPersonBuilder.withId(userPersonData.getIdUser())
                 .withName(userPersonData.getName())
@@ -55,16 +52,21 @@ public class DataMapper {
         return productBuilder.withId(data.getIdProduct())
                 .withName(data.getName())
                 .withPrice(data.getPrice())
+                .withIdUser(data.getUsers().getIdUser())
                 .build();
     }
 
     public static ProductData toData(Product product){
 
         ProductData data= new ProductData();
+        UserPersonData userPersonData = new UserPersonData();
+
+        userPersonData.setIdUser(product.getIdUser());
 
         data.setIdProduct(product.getIdProduct());
         data.setName(product.getName());
         data.setPrice(product.getPrice());
+        data.setUsers(userPersonData);
 
         return data;
     }

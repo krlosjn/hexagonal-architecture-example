@@ -2,7 +2,6 @@ package com.know.hexagonalarchitecture.jparepository.user;
 
 import com.know.hexagonalarchitecture.jparepository.product.ProductData;
 
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class UserPersonData {
     @Column(name="IDENTIFICACION", nullable = false)
     private String dniUser;
 
-    @OneToMany(mappedBy = "idUser")
+    @OneToMany(mappedBy="users")
     private List<ProductData> products;
 
     public UserPersonData(){

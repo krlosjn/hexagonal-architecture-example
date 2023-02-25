@@ -21,8 +21,8 @@ public class ProductData {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "ID_USUARIO", insertable = false, updatable = false)
-    private UserPersonData idUser;
+    @JoinColumn(name = "ID_USUARIO")
+    private UserPersonData users;
 
     public ProductData(){
 
@@ -48,11 +48,11 @@ public class ProductData {
     }
 
 
-    public UserPersonData getIdUser() {
-        return idUser;
+    public UserPersonData getUsers() {
+        return users;
     }
 
-    public void setIdUser(UserPersonData idUser) {
-        this.idUser = idUser;
+    public void setUsers(UserPersonData users) {
+        this.users = users;
     }
 }
