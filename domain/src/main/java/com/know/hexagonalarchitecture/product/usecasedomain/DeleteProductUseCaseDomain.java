@@ -22,4 +22,5 @@ public class DeleteProductUseCaseDomain {
         return "El producto con id " + id + " ha sido eliminado";
 
     }
+
 }
