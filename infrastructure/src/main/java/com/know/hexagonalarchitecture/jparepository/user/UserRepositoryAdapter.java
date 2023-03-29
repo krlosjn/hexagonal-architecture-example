@@ -17,7 +17,7 @@ public class UserRepositoryAdapter implements UserRepository {
     @Autowired
     private  UserDataRepository repository;
     @Autowired
-    private final DataMapper dataMapper;
+    private DataMapper dataMapper;
 
     public UserRepositoryAdapter(UserDataRepository repository, DataMapper dataMapper){
         this.repository=repository;

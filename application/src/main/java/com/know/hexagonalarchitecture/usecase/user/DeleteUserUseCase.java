@@ -1,8 +1,7 @@
 package com.know.hexagonalarchitecture.usecase.user;
 
-
-
 import com.know.hexagonalarchitecture.user.usecasedomain.DeleteUserUseCaseDomain;
+import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,8 +14,8 @@ public class DeleteUserUseCase {
     }
 
 
-    public String execute(Long id){
-        return this.deleteUserUseCaseDomain.deleteUser(id);
+    public String execute(Long id) throws BusinessException {
+        return  this.deleteUserUseCaseDomain.deleteUser(id);
     }
 
 }

@@ -7,16 +7,14 @@ import java.util.List;
 public class UserPersonBuilder {
 
     private Long idUser;
-
     private String name;
-
     private String lastName;
-
+    private String typeDocument;
+    private String nmDocument;
     private String dniUser;
-
     private List<Product> products;
 
-    public  UserPersonBuilder(){}
+    public UserPersonBuilder(){}
 
     public UserPersonBuilder withId(Long id){
         this.idUser =id;
@@ -35,8 +33,13 @@ public class UserPersonBuilder {
     }
 
 
-    public UserPersonBuilder withDniUser(String dniUser){
-        this.dniUser=dniUser;
+    public UserPersonBuilder withTypeDocument(String typeDocument){
+        this.typeDocument =typeDocument;
+        return this;
+    }
+
+    public UserPersonBuilder withNmDocument(String nmDocument){
+        this.nmDocument=nmDocument;
         return this;
     }
 
@@ -45,9 +48,12 @@ public class UserPersonBuilder {
         return  this;
     }
 
-
-    public UserPerson build(){
-        return new UserPerson(idUser,name,lastName,dniUser,products);
+    public UserPersonBuilder withDniUser(String dniUser){
+        this.dniUser=dniUser;
+        return this;
     }
 
+    public UserPerson build() {
+        return new UserPerson(idUser,name,lastName, typeDocument, nmDocument, dniUser,products);
+    }
 }

@@ -9,6 +9,7 @@ import com.know.hexagonalarchitecture.usecase.product.DeleteProductUseCase;
 import com.know.hexagonalarchitecture.usecase.product.ListProducts;
 import com.know.hexagonalarchitecture.usecase.product.SaveProductUseCase;
 import com.know.hexagonalarchitecture.usecase.product.UpdateProductUseCase;
+import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class ProductController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ObjectDto> saveProduct(@RequestBody Product product){
+    public ResponseEntity<ObjectDto> saveProduct(@RequestBody Product product) throws BusinessException {
         return new ResponseEntity<>(this.factory
                 .buildResponse("Productos",
                         Arrays.asList(this.saveProductUseCase.execute(product)),null ), HttpStatus.OK);
@@ -53,13 +54,13 @@ public class ProductController {
 
 
     @PutMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ObjectDto> updateProduct(@PathVariable(value="id") Long id,@RequestBody Product product){
+    public ResponseEntity<ObjectDto> updateProduct(@PathVariable(value="id") Long id,@RequestBody Product product) throws BusinessException {
         return new ResponseEntity<>(this.factory.buildResponse("update product ",
                 Arrays.asList(this.updateProductUseCase.execute(product, id)),null),HttpStatus.OK);
     }
 
     @DeleteMapping(value="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") Long id ){
+    public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") Long id ) throws BusinessException {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(this.deleteProductUseCase.execute(id));
     }

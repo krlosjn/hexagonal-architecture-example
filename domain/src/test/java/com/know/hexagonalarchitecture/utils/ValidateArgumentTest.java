@@ -1,8 +1,7 @@
 package com.know.hexagonalarchitecture.utils;
 
 
-import com.know.hexagonalarchitecture.product.exception.NumberPriceException;
-import com.know.hexagonalarchitecture.user.exception.DocumentInvalidException;
+import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,21 +13,21 @@ public  class ValidateArgumentTest {
     public void testValidObject() {
         Object object = "example";
         String message = "Object cannot be null or empty";
-        Assertions.assertDoesNotThrow(() -> validateMandatory(object, message));
+        Assertions.assertDoesNotThrow(() -> validateMandatory(object));
     }
 
     @Test
     public void testNullObject() {
         Object object = null;
         String message = "Object cannot be null or empty";
-        Assertions.assertThrows(MandatoryException.class, () -> validateMandatory(object, message));
+        Assertions.assertThrows(BusinessException.class, () -> validateMandatory(object));
     }
 
     @Test
     public void testEmptyObject() {
         Object object = "";
         String message = "Object cannot be null or empty";
-        Assertions.assertThrows(MandatoryException.class, () -> validateMandatory(object, message));
+        Assertions.assertThrows(BusinessException.class, () -> validateMandatory(object));
     }
 
 
@@ -37,7 +36,7 @@ public  class ValidateArgumentTest {
         String document="12345";
         String message="another message for number document";
 
-        Assertions.assertThrows(DocumentInvalidException.class,()->validateStringDocumentNumber(document,message));
+        Assertions.assertThrows(BusinessException.class,()->validateStringDocumentNumber(document));
     }
 
     @Test
@@ -45,15 +44,14 @@ public  class ValidateArgumentTest {
         String document="123456789011";
         String message="another message for number document";
 
-        Assertions.assertThrows(DocumentInvalidException.class,()->validateStringDocumentNumber(document,message));
+        Assertions.assertThrows(BusinessException.class,()->validateStringDocumentNumber(document));
     }
 
     @Test
     public void shouldThrowsExceptionWithNegativeNumber(){
         Double sal=-12.0;
-        String message="should be positive number";
 
-        Assertions.assertThrows(NumberPriceException.class,()->validatePrice(sal,message));
+        Assertions.assertThrows(BusinessException.class,()->validatePrice(sal));
 
     }
 

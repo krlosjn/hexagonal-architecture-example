@@ -1,13 +1,13 @@
 package com.know.hexagonalarchitecture.user.usecasedomain;
 
-import com.know.hexagonalarchitecture.user.exception.UserNotFoundException;
 import com.know.hexagonalarchitecture.user.ports.UserRepository;
+import com.know.hexagonalarchitecture.utils.exception.BusinessException;
+import com.know.hexagonalarchitecture.utils.exception.BusinessExceptionMessage;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DeleteUserUseCaseDomain {
 
-    public static final String USER_CANT_BE_DELETE = "El usuario no se puede eliminar, es posible que no exista";
     private final UserRepository repository;
 
     public DeleteUserUseCaseDomain(UserRepository repository){
@@ -15,9 +15,9 @@ public class DeleteUserUseCaseDomain {
     }
 
 
-    public String deleteUser(Long id){
+    public String deleteUser(Long id) throws BusinessException {
         if(!this.repository.userExist(id)){
-            throw  new UserNotFoundException(USER_CANT_BE_DELETE);
+            throw  new BusinessException(BusinessExceptionMessage.USERCANTBEDELETE.toString());
         }
         this.repository.deleteUser(id);
         return " el usuario con id " + id + " ha sido eliminado con éxito ";

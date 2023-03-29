@@ -5,6 +5,8 @@ import com.know.hexagonalarchitecture.helpers.buildersdto.DetailDataDtoBuilder;
 import com.know.hexagonalarchitecture.helpers.buildersdto.ObjectDtoBuilder;
 import com.know.hexagonalarchitecture.helpers.dto.DataFactory;
 import com.know.hexagonalarchitecture.jparepository.DataMapper;
+import com.know.hexagonalarchitecture.jparepository.user.UserDataRepository;
+import com.know.hexagonalarchitecture.jparepository.user.UserRepositoryAdapter;
 import com.know.hexagonalarchitecture.product.model.ProductBuilder;
 import com.know.hexagonalarchitecture.usecase.user.ListUsersUseCase;
 import com.know.hexagonalarchitecture.user.model.UserPersonBuilder;
@@ -15,10 +17,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfiguration {
 
-    @Bean
-    public DataMapper generateDataMapper(UserPersonBuilder userPersonBuilder, ProductBuilder productBuilder){
-        return new DataMapper(userPersonBuilder,productBuilder);
+
+
+   @Bean
+    public DataMapper generateDataMapper(){
+        return new DataMapper();
     }
+
+    /*
+
+    @Bean
+    public UserRepositoryAdapter generateUserRepositoryAdapter(UserDataRepository userDataRepository,DataMapper dataMapper){
+        return new UserRepositoryAdapter(userDataRepository,dataMapper);
+    }*/
+
     @Bean
     public UserPersonBuilder generateUserPersonBuilder(){
         return new UserPersonBuilder();

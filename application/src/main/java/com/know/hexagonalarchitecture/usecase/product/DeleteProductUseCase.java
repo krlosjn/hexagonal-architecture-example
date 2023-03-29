@@ -2,6 +2,7 @@ package com.know.hexagonalarchitecture.usecase.product;
 
 
 import com.know.hexagonalarchitecture.product.usecasedomain.DeleteProductUseCaseDomain;
+import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,7 +14,7 @@ public class DeleteProductUseCase {
         this.deleteProductUseCaseDomain = DeleteProductUseCaseDomain;
     }
 
-    public String execute(Long id){
+    public String execute(Long id) throws BusinessException {
         return this.deleteProductUseCaseDomain.deleteProductCurrent(id);
     }
 }

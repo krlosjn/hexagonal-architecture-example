@@ -13,16 +13,16 @@ public class UserPersonData {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="ID_USUARIO", nullable = false)
     private Long idUser;
-
     @Column(name="NOMBRE", nullable = false)
     private String name;
-
     @Column(name="APELLIDO", nullable = false)
     private String lastName;
-
-    @Column(name="IDENTIFICACION", nullable = false)
+    @Column(name="TIPO_DOCUMENTO", nullable = false)
+    private String typeDocument;
+    @Column(name="NUMERO_DOCUMENTO")
+    private String numberDocument;
+    @Column(name="DNI_USUARIO")
     private String dniUser;
-
     @OneToMany(mappedBy="users")
     private List<ProductData> products;
 
@@ -52,6 +52,22 @@ public class UserPersonData {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getTypeDocument() {
+        return typeDocument;
+    }
+
+    public void setTypeDocument(String typeDocument) {
+        this.typeDocument = typeDocument;
+    }
+
+    public String getNumberDocument() {
+        return numberDocument;
+    }
+
+    public void setNumberDocument(String numberDocument) {
+        this.numberDocument = numberDocument;
     }
 
     public String getDniUser() {

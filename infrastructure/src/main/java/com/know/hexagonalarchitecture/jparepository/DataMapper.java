@@ -7,24 +7,20 @@ import com.know.hexagonalarchitecture.product.model.Product;
 import com.know.hexagonalarchitecture.product.model.ProductBuilder;
 import com.know.hexagonalarchitecture.user.model.UserPerson;
 import com.know.hexagonalarchitecture.user.model.UserPersonBuilder;
+
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 
 public class DataMapper {
+    public DataMapper(){}
+    public static UserPerson toEntity(UserPersonData userPersonData)  {
 
-    private  static UserPersonBuilder userPersonBuilder=null;
-    private static ProductBuilder productBuilder=null;
-
-    public DataMapper(UserPersonBuilder userPersonBuilder,ProductBuilder productBuilder){
-    this.userPersonBuilder=userPersonBuilder;
-    this.productBuilder=productBuilder;
-   }
-    public static UserPerson toEntity(UserPersonData userPersonData){
-
-       return  userPersonBuilder.withId(userPersonData.getIdUser())
+       return new UserPersonBuilder().withId(userPersonData.getIdUser())
                 .withName(userPersonData.getName())
                 .withLastName(userPersonData.getLastName())
+                .withTypeDocument(userPersonData.getTypeDocument())
+                .withNmDocument(userPersonData.getNumberDocument())
                 .withDniUser(userPersonData.getDniUser())
                 .withProducts(Objects.isNull(userPersonData.getProducts()) || userPersonData.getProducts().isEmpty()
                        ? null
@@ -40,6 +36,8 @@ public class DataMapper {
         data.setIdUser(userPerson.getIdUser());
         data.setName(userPerson.getName());
         data.setLastName(userPerson.getLastName());
+        data.setTypeDocument(userPerson.getTypeDocument());
+        data.setNumberDocument(userPerson.getNumberDocument());
         data.setDniUser(userPerson.getDniUser());
         data.setProducts(Objects.isNull(userPerson.getProducts()) || userPerson.getProducts().isEmpty()
                 ? null
@@ -49,7 +47,7 @@ public class DataMapper {
     };
 
     public static Product toEntity(ProductData data){
-        return productBuilder.withId(data.getIdProduct())
+        return  new ProductBuilder().withId(data.getIdProduct())
                 .withName(data.getName())
                 .withPrice(data.getPrice())
                 .withIdUser(data.getUsers().getIdUser())

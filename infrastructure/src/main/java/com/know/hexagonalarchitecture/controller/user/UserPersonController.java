@@ -5,6 +5,7 @@ import com.know.hexagonalarchitecture.helpers.dto.DataFactory;
 import com.know.hexagonalarchitecture.helpers.dto.ObjectDto;
 import com.know.hexagonalarchitecture.usecase.user.*;
 import com.know.hexagonalarchitecture.user.model.UserPerson;
+import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,6 @@ public class UserPersonController {
     private final FindOneUser findOneUser;
     private final UpdateUserUseCase updateUserUseCase;
     private final DataFactory dataFactory;
-
     private final DeleteUserUseCase deleteUserUseCase;
 
 
@@ -52,7 +52,7 @@ public class UserPersonController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ObjectDto> updatingUser(@RequestBody UserPerson user, @PathVariable("id") Long id){
+    public ResponseEntity<ObjectDto> updatingUser(@RequestBody UserPerson user, @PathVariable("id") Long id) throws BusinessException {
 
         return new ResponseEntity<>(this.dataFactory.buildResponse("Usuario actualizado ", Arrays.asList(this.updateUserUseCase.execute(user,id)),null),HttpStatus.OK);
     }
@@ -65,7 +65,7 @@ public class UserPersonController {
     }
 
     @DeleteMapping(value="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> deleteUser(@PathVariable(value="id") Long id){
+    public ResponseEntity<Object> deleteUser(@PathVariable(value="id") Long id) throws BusinessException {
         return ResponseEntity.status(HttpStatus.OK).body(this.deleteUserUseCase.execute(id));
     }
 }

@@ -33,7 +33,7 @@ public class ProductBuilder {
 
 
 
-    public Product build(){
+    public Product build()  {
         return new Product(idProduct,name,price,idUser);
     };
 }
