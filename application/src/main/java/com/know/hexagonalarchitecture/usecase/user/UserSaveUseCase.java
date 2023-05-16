@@ -1,12 +1,11 @@
 package com.know.hexagonalarchitecture.usecase.user;
 
 
-
 import com.know.hexagonalarchitecture.user.model.UserPerson;
 import com.know.hexagonalarchitecture.user.usecasedomain.SaveUserUseCaseDomain;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UserSaveUseCase {
 
     private final SaveUserUseCaseDomain saveUserDomain;

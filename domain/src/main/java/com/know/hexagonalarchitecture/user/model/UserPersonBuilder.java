@@ -54,6 +54,6 @@ public class UserPersonBuilder {
     }
 
     public UserPerson build() {
-        return new UserPerson(idUser,name,lastName, typeDocument, nmDocument, dniUser,products);
+        return new UserPerson(idUser,name,lastName,nmDocument,typeDocument,dniUser,products);
     }
 }

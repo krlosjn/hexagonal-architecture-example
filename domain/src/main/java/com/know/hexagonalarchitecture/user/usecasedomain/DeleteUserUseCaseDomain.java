@@ -3,9 +3,8 @@ package com.know.hexagonalarchitecture.user.usecasedomain;
 import com.know.hexagonalarchitecture.user.ports.UserRepository;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import com.know.hexagonalarchitecture.utils.exception.BusinessExceptionMessage;
-import org.springframework.stereotype.Service;
 
-@Service
+
 public class DeleteUserUseCaseDomain {
 
     private final UserRepository repository;
@@ -13,7 +12,6 @@ public class DeleteUserUseCaseDomain {
     public DeleteUserUseCaseDomain(UserRepository repository){
         this.repository=repository;
     }
-
 
     public String deleteUser(Long id) throws BusinessException {
         if(!this.repository.userExist(id)){

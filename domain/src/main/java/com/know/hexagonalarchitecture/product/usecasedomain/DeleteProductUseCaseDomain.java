@@ -3,9 +3,8 @@ package com.know.hexagonalarchitecture.product.usecasedomain;
 import com.know.hexagonalarchitecture.product.ports.ProductRepository;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import com.know.hexagonalarchitecture.utils.exception.BusinessExceptionMessage;
-import org.springframework.stereotype.Service;
 
-@Service
+
 public class DeleteProductUseCaseDomain {
 
     private final ProductRepository repository;

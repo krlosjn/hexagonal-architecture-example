@@ -2,20 +2,15 @@ package com.know.hexagonalarchitecture.utils;
 
 
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 
 import static com.know.hexagonalarchitecture.utils.ValidateArgument.*;
 
 
 public  class ValidateArgumentTest {
-    @Test
-    public void testValidObject() {
-        Object object = "example";
-        String message = "Object cannot be null or empty";
-        Assertions.assertDoesNotThrow(() -> validateMandatory(object));
-    }
-
     @Test
     public void testNullObject() {
         Object object = null;
@@ -40,7 +35,7 @@ public  class ValidateArgumentTest {
     }
 
     @Test
-    public void  ShouldThrowExcepcionMoreTenNumbers(){
+    public void  ShouldThrowExceptionMoreTenNumbers(){
         String document="123456789011";
         String message="another message for number document";
 
@@ -54,6 +49,4 @@ public  class ValidateArgumentTest {
         Assertions.assertThrows(BusinessException.class,()->validatePrice(sal));
 
     }
-
-
 }

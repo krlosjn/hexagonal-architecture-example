@@ -5,6 +5,7 @@ import java.util.List;
 
 
 public class UserPerson {
+    
     private Long idUser;
     private String name;
     private String lastName;
@@ -27,15 +28,28 @@ public class UserPerson {
     public Long getIdUser() {
         return idUser;
     }
+
     public String getName() {
         return name;
     }
+
     public String getLastName() {
         return lastName;
     }
-    public String getDniUser() {return dniUser;}
-    public String getNumberDocument(){return numberDocument;}
-    public String getTypeDocument(){return typeDocument;}
-    public List<Product> getProducts(){return  products;}
 
+    public String getNumberDocument() {
+        return numberDocument;
+    }
+
+    public String getTypeDocument() {
+        return typeDocument;
+    }
+
+    public String getDniUser() {
+        return dniUser;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
 }

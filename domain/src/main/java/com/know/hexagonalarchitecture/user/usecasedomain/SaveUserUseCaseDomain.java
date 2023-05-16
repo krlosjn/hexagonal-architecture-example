@@ -5,11 +5,10 @@ import com.know.hexagonalarchitecture.user.model.UserPersonBuilder;
 import com.know.hexagonalarchitecture.user.ports.UserRepository;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import com.know.hexagonalarchitecture.utils.exception.BusinessExceptionMessage;
-import org.springframework.stereotype.Service;
 
 import static com.know.hexagonalarchitecture.utils.ValidateArgument.*;
 
-@Service
+
 public class SaveUserUseCaseDomain {
 
     private final UserRepository userRepository;

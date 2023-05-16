@@ -1,31 +1,11 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.6'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.know'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
+dependencies {
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+}
 
 repositories {
 	mavenCentral()
 }
-
-springBoot {
-	mainClass.value("com.know.HexagonalArquitectureApplication")
-}
-
-dependencies {
-	implementation 'org.springframework:spring-context:5.3.24'
-	testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
-	testImplementation 'org.mockito:mockito-core:3.12.4'
-	testImplementation 'junit:junit:4.13.2'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
-}
-

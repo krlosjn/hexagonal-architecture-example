@@ -5,32 +5,25 @@ import com.know.hexagonalarchitecture.helpers.buildersdto.DetailDataDtoBuilder;
 import com.know.hexagonalarchitecture.helpers.buildersdto.ObjectDtoBuilder;
 import com.know.hexagonalarchitecture.helpers.dto.DataFactory;
 import com.know.hexagonalarchitecture.jparepository.DataMapper;
-import com.know.hexagonalarchitecture.jparepository.user.UserDataRepository;
-import com.know.hexagonalarchitecture.jparepository.user.UserRepositoryAdapter;
 import com.know.hexagonalarchitecture.product.model.ProductBuilder;
-import com.know.hexagonalarchitecture.usecase.user.ListUsersUseCase;
+import com.know.hexagonalarchitecture.product.ports.ProductRepository;
+import com.know.hexagonalarchitecture.product.usecasedomain.DeleteProductUseCaseDomain;
+import com.know.hexagonalarchitecture.product.usecasedomain.SaveProductUseCaseDomain;
+import com.know.hexagonalarchitecture.product.usecasedomain.UpdateProductUseCaseDomain;
 import com.know.hexagonalarchitecture.user.model.UserPersonBuilder;
 import com.know.hexagonalarchitecture.user.ports.UserRepository;
+import com.know.hexagonalarchitecture.user.usecasedomain.DeleteUserUseCaseDomain;
+import com.know.hexagonalarchitecture.user.usecasedomain.SaveUserUseCaseDomain;
+import com.know.hexagonalarchitecture.user.usecasedomain.UpdateUserPersonUseCaseDomain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringConfiguration {
-
-
-
    @Bean
     public DataMapper generateDataMapper(){
         return new DataMapper();
     }
-
-    /*
-
-    @Bean
-    public UserRepositoryAdapter generateUserRepositoryAdapter(UserDataRepository userDataRepository,DataMapper dataMapper){
-        return new UserRepositoryAdapter(userDataRepository,dataMapper);
-    }*/
-
     @Bean
     public UserPersonBuilder generateUserPersonBuilder(){
         return new UserPersonBuilder();
@@ -50,7 +43,28 @@ public class SpringConfiguration {
         return new DataFactory(objectDtoBuilder,detailObjectDtoBuilder);
     }
     @Bean
-    public ListUsersUseCase generateListUserUseCase(UserRepository userRepository){
-        return new ListUsersUseCase(userRepository);
+    public DeleteUserUseCaseDomain generateUseCaseDeleteDomain(UserRepository repository){
+       return new DeleteUserUseCaseDomain(repository);
     }
+    @Bean
+    public SaveUserUseCaseDomain generatUseCaseSaveDomain(UserRepository repository){
+       return new SaveUserUseCaseDomain(repository);
+    }
+    @Bean
+    public UpdateUserPersonUseCaseDomain generateUseCaseUpdateDomain(UserRepository repository){
+       return new UpdateUserPersonUseCaseDomain(repository);
+    }
+
+    @Bean
+    public DeleteProductUseCaseDomain generateUseCaseDeleteProductDomain(ProductRepository repository){
+       return new DeleteProductUseCaseDomain(repository);
+    }
+    @Bean
+    public SaveProductUseCaseDomain generateUseCaseProductDoamin(ProductRepository repository){
+       return new SaveProductUseCaseDomain(repository);
+    }
+    @Bean
+    public UpdateProductUseCaseDomain generateUseCaseProductDomain(ProductRepository repository){
+    return new UpdateProductUseCaseDomain(repository);
+   }
 }

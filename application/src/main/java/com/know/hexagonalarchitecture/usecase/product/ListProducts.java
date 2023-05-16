@@ -3,11 +3,11 @@ package com.know.hexagonalarchitecture.usecase.product;
 
 import com.know.hexagonalarchitecture.product.model.Product;
 import com.know.hexagonalarchitecture.product.ports.ProductRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class ListProducts {
     private final ProductRepository repository;
     public ListProducts(ProductRepository repository){

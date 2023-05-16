@@ -3,9 +3,9 @@ package com.know.hexagonalarchitecture.usecase.user;
 
 import com.know.hexagonalarchitecture.user.model.UserPerson;
 import com.know.hexagonalarchitecture.user.ports.UserRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class FindOneUser {
 
 

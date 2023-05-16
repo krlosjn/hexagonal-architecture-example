@@ -41,7 +41,7 @@ public class ValidateArgument {
     public static String  validateTypeDocument(String type) throws BusinessException {
         String regex = "^[a-zA-Z]{1}$";
         if(!type.matches(regex)){
-            throw  new BusinessException(BusinessExceptionMessage.TYPEDOCUMENTINVALID.toString()+ "  " + type);
+            throw  new BusinessException(BusinessExceptionMessage.TYPEDOCUMENTINVALID.name()+ "  " + type);
         }
         return type;
     }

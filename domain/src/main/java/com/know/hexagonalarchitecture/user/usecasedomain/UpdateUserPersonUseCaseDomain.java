@@ -5,13 +5,10 @@ import com.know.hexagonalarchitecture.user.model.UserPerson;
 import com.know.hexagonalarchitecture.user.ports.UserRepository;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import com.know.hexagonalarchitecture.utils.exception.BusinessExceptionMessage;
-import org.springframework.stereotype.Service;
 
 
-@Service
+
 public class UpdateUserPersonUseCaseDomain {
-
-
     private final UserRepository userRepository;
 
     public UpdateUserPersonUseCaseDomain(UserRepository userRepository) {

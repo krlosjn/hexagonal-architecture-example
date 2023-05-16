@@ -27,7 +27,7 @@ public class DataMapper {
                        : userPersonData.getProducts().stream().map(DataMapper::toEntity).collect(Collectors.toList())
                 )
                 .build();
-    };
+    }
 
     public static  UserPersonData toData(UserPerson userPerson){
 
@@ -44,7 +44,7 @@ public class DataMapper {
                 : userPerson.getProducts().stream().map(DataMapper::toData).collect(Collectors.toList())
         );
         return data;
-    };
+    }
 
     public static Product toEntity(ProductData data){
         return  new ProductBuilder().withId(data.getIdProduct())

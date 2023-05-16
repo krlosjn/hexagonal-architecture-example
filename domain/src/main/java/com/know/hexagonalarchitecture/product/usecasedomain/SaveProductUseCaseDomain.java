@@ -5,13 +5,12 @@ import com.know.hexagonalarchitecture.product.model.ProductBuilder;
 import com.know.hexagonalarchitecture.product.ports.ProductRepository;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import com.know.hexagonalarchitecture.utils.exception.BusinessExceptionMessage;
-import org.springframework.stereotype.Service;
 
 import static com.know.hexagonalarchitecture.utils.ValidateArgument.validateMandatory;
 import static com.know.hexagonalarchitecture.utils.ValidateArgument.validatePrice;
 
 
-@Service
+
 public class SaveProductUseCaseDomain {
 
 

@@ -3,8 +3,8 @@ package com.know.hexagonalarchitecture.controller.user;
 
 import com.know.hexagonalarchitecture.helpers.dto.DataFactory;
 import com.know.hexagonalarchitecture.helpers.dto.ObjectDto;
+import com.know.hexagonalarchitecture.helpers.dto.UserPersonDto;
 import com.know.hexagonalarchitecture.usecase.user.*;
-import com.know.hexagonalarchitecture.user.model.UserPerson;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,11 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Collections;
+
+import static com.know.hexagonalarchitecture.helpers.dto.DtoFactory.createUser;
 
 @RestController
 @RequestMapping(value="v1/usuarios")
 public class UserPersonController {
-
 
     private final UserSaveUseCase userSaveUseCase;
     private final ListUsersUseCase listUsersUseCase;
@@ -24,7 +26,6 @@ public class UserPersonController {
     private final UpdateUserUseCase updateUserUseCase;
     private final DataFactory dataFactory;
     private final DeleteUserUseCase deleteUserUseCase;
-
 
 
     public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory, ListUsersUseCase listUsersUseCase, FindOneUser findOneUser, UpdateUserUseCase updateUserUseCase, DeleteUserUseCase deleteUserUseCase){
@@ -37,31 +38,30 @@ public class UserPersonController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ObjectDto> saveUser(@RequestBody UserPerson userPerson) throws Exception {
+    public ResponseEntity<ObjectDto> saveUser(@RequestBody UserPersonDto userDto) throws Exception {
         return new ResponseEntity<>( this.dataFactory
-                .buildResponse("Usuarios", Arrays.asList(this.userSaveUseCase.execute(userPerson)),null),
+                .buildResponse("Usuarios", Collections.singletonList(this.userSaveUseCase.execute(createUser(userDto))),null),
                 HttpStatus.CREATED);
     }
-
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ObjectDto> listAllUsers(){
 
         return new ResponseEntity<>( this.dataFactory
-                .buildResponse("Consultar usuarios",Arrays.asList(this.listUsersUseCase.execute()),null),HttpStatus.OK);
+                .buildResponse("Consultar usuarios", Collections.singletonList(this.listUsersUseCase.execute()),null),HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ObjectDto> updatingUser(@RequestBody UserPerson user, @PathVariable("id") Long id) throws BusinessException {
+    public ResponseEntity<ObjectDto> updatingUser(@RequestBody UserPersonDto userDto, @PathVariable("id") Long id) throws BusinessException {
 
-        return new ResponseEntity<>(this.dataFactory.buildResponse("Usuario actualizado ", Arrays.asList(this.updateUserUseCase.execute(user,id)),null),HttpStatus.OK);
+        return new ResponseEntity<>(this.dataFactory.buildResponse("Usuario actualizado ", Arrays.asList(this.updateUserUseCase.execute(createUser(userDto),id)),null),HttpStatus.OK);
     }
 
     @GetMapping(value="/detalle/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ObjectDto> listUserByName(@PathVariable(value="id") Long id){
 
         return new ResponseEntity<>( this.dataFactory
-                .buildResponse("Consultar usuarios",Arrays.asList(this.findOneUser.execute(id)),null),HttpStatus.OK);
+                .buildResponse("Consultar usuarios", Collections.singletonList(this.findOneUser.execute(id)),null),HttpStatus.OK);
     }
 
     @DeleteMapping(value="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)

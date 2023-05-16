@@ -1,29 +1,12 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.6'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.know'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+dependencies {
+	implementation 'org.springframework:spring-context:5.3.24'
+	implementation project(':domain')
+}
 
 repositories {
 	mavenCentral()
 }
-
-springBoot {
-	mainClass.value("com.know.HexagonalArquitectureApplication")
-}
-
-dependencies {
-
-	implementation 'org.springframework:spring-context:5.3.24'
-	implementation project(':domain')
-
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
-}
-

@@ -2,9 +2,10 @@ package com.know.hexagonalarchitecture.usecase.user;
 
 import com.know.hexagonalarchitecture.user.usecasedomain.DeleteUserUseCaseDomain;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+
+@Service
 public class DeleteUserUseCase {
 
     private final DeleteUserUseCaseDomain deleteUserUseCaseDomain;

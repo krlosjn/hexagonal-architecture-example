@@ -4,9 +4,9 @@ package com.know.hexagonalarchitecture.usecase.product;
 import com.know.hexagonalarchitecture.product.model.Product;
 import com.know.hexagonalarchitecture.product.usecasedomain.UpdateProductUseCaseDomain;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UpdateProductUseCase {
 
     private final UpdateProductUseCaseDomain updateProductUseCaseDomain;
