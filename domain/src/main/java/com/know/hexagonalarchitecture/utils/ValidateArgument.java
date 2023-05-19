@@ -16,7 +16,7 @@ public class ValidateArgument {
     }
 
     public static String validateStringDocumentNumber(String document) throws BusinessException {
-        String regexNumber="^[0-9]{10}$";
+        String regexNumber="^[0-9]{10,10}$";
       if(!document.matches(regexNumber)){
           throw  new BusinessException(BusinessExceptionMessage.NUMBERDOCUMENTINVALID.toString());
       }
@@ -39,7 +39,7 @@ public class ValidateArgument {
     }
 
     public static String  validateTypeDocument(String type) throws BusinessException {
-        String regex = "^[a-zA-Z]{1}$";
+        String regex = "^[a-zA-Z]{1,1}$";
         if(!type.matches(regex)){
             throw  new BusinessException(BusinessExceptionMessage.TYPEDOCUMENTINVALID.name()+ "  " + type);
         }

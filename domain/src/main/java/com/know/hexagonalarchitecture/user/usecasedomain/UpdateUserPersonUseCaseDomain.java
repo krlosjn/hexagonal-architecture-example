@@ -20,7 +20,7 @@ public class UpdateUserPersonUseCaseDomain {
         return this.userRepository.updateUserPerson(userPerson,id);
     }
 
-    private void validateIfUserExist(Long id) throws BusinessException {
+    protected void validateIfUserExist(Long id) throws BusinessException {
         if(!this.userRepository.userExist(id)){
             throw  new BusinessException(BusinessExceptionMessage.USERITCANTBEUPDATE.toString());
         }
