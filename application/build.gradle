@@ -4,6 +4,8 @@ plugins {
 
 dependencies {
 	implementation 'org.springframework:spring-context:5.3.24'
+	testImplementation 'junit:junit:4.13.2'
+	testImplementation 'org.mockito:mockito-core:2.28.2'
 	implementation project(':domain')
 }
 

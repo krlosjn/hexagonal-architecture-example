@@ -6,7 +6,7 @@ import com.know.hexagonalarchitecture.helpers.dto.ObjectDto;
 import com.know.hexagonalarchitecture.helpers.dto.ProductDto;
 import com.know.hexagonalarchitecture.product.model.Product;
 import com.know.hexagonalarchitecture.usecase.product.DeleteProductUseCase;
-import com.know.hexagonalarchitecture.usecase.product.ListProducts;
+import com.know.hexagonalarchitecture.usecase.product.ListProductsUseCase;
 import com.know.hexagonalarchitecture.usecase.product.SaveProductUseCase;
 import com.know.hexagonalarchitecture.usecase.product.UpdateProductUseCase;
 import com.know.hexagonalarchitecture.utils.exception.BusinessException;
@@ -24,14 +24,14 @@ import static com.know.hexagonalarchitecture.helpers.dto.DtoFactory.createProduc
 public class ProductController {
 
     private final SaveProductUseCase saveProductUseCase;
-    private final ListProducts listProducts;
+    private final ListProductsUseCase listProducts;
     private final DeleteProductUseCase deleteProductUseCase;
     private final UpdateProductUseCase updateProductUseCase;
     private final DataFactory factory;
 
 
 
-    public ProductController(SaveProductUseCase saveProductUseCase, DataFactory factory,ListProducts listProducts, DeleteProductUseCase deleteProductUseCase,UpdateProductUseCase updateProductUseCase){
+    public ProductController(SaveProductUseCase saveProductUseCase, DataFactory factory, ListProductsUseCase listProducts, DeleteProductUseCase deleteProductUseCase, UpdateProductUseCase updateProductUseCase){
         this.saveProductUseCase = saveProductUseCase;
         this.listProducts=listProducts;
         this.deleteProductUseCase=deleteProductUseCase;

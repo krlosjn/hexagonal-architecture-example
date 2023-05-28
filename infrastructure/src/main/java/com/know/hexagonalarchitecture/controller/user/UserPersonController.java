@@ -22,36 +22,37 @@ public class UserPersonController {
 
     private final UserSaveUseCase userSaveUseCase;
     private final ListUsersUseCase listUsersUseCase;
-    private final FindOneUser findOneUser;
+    private final FindOneUserUseCase findOneUser;
     private final UpdateUserUseCase updateUserUseCase;
     private final DataFactory dataFactory;
     private final DeleteUserUseCase deleteUserUseCase;
 
 
-    public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory, ListUsersUseCase listUsersUseCase, FindOneUser findOneUser, UpdateUserUseCase updateUserUseCase, DeleteUserUseCase deleteUserUseCase){
-        this.userSaveUseCase=userSaveUseCase;
-        this.dataFactory=dataFactory;
-        this.listUsersUseCase=listUsersUseCase;
-        this.findOneUser =findOneUser;
-        this.updateUserUseCase=updateUserUseCase;
-        this.deleteUserUseCase=deleteUserUseCase;
+    public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory, ListUsersUseCase listUsersUseCase, FindOneUserUseCase findOneUser, UpdateUserUseCase updateUserUseCase, DeleteUserUseCase deleteUserUseCase) {
+        this.userSaveUseCase = userSaveUseCase;
+        this.dataFactory = dataFactory;
+        this.listUsersUseCase = listUsersUseCase;
+        this.findOneUser = findOneUser;
+        this.updateUserUseCase = updateUserUseCase;
+        this.deleteUserUseCase = deleteUserUseCase;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ObjectDto> saveUser(@RequestBody UserPersonDto userDto) throws Exception {
-        return new ResponseEntity<>( this.dataFactory
-                .buildResponse("Usuarios", Collections.singletonList(this.userSaveUseCase.execute(createUser(userDto))),null),
+        return new ResponseEntity<>(this.dataFactory
+                .buildResponse("Usuarios", Collections.singletonList(this.userSaveUseCase.execute(createUser(userDto))), null),
                 HttpStatus.CREATED);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ObjectDto> listAllUsers(){
+    public ResponseEntity<ObjectDto> listAllUsers() {
 
-        return new ResponseEntity<>( this.dataFactory
-                .buildResponse("Consultar usuarios", Collections.singletonList(this.listUsersUseCase.execute()),null),HttpStatus.OK);
+        return new ResponseEntity<>(this.dataFactory
+                .buildResponse("Consultar usuarios", Collections.singletonList(this.listUsersUseCase.execute()), null), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    /**REVISAR ESTE ENDPOITN**/
+    @PutMapping(value="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ObjectDto> updatingUser(@RequestBody UserPersonDto userDto, @PathVariable("id") Long id) throws BusinessException {
 
         return new ResponseEntity<>(this.dataFactory.buildResponse("Usuario actualizado ", Arrays.asList(this.updateUserUseCase.execute(createUser(userDto),id)),null),HttpStatus.OK);

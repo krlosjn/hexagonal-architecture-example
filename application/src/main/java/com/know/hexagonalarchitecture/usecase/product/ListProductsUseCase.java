@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ListProducts {
+public class ListProductsUseCase {
     private final ProductRepository repository;
-    public ListProducts(ProductRepository repository){
+    public ListProductsUseCase(ProductRepository repository){
         this.repository=repository;
     }
 

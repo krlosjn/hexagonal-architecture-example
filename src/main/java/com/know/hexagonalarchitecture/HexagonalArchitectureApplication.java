@@ -6,10 +6,10 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan({"com.know"})
 @SpringBootApplication
-public class HexagonalArquitectureApplication {
+public class HexagonalArchitectureApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HexagonalArquitectureApplication.class, args);
+		SpringApplication.run(HexagonalArchitectureApplication.class, args);
 	}
 
 }

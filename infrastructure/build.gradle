@@ -4,15 +4,26 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-dependencies {
-
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'com.h2database:h2'
-    implementation project(':domain')
-    implementation project(':application')
-}
-
 repositories {
     mavenCentral()
 }
+
+dependencies {
+
+    implementation project(':domain')
+    implementation project(':application')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:2.28.2'
+
+}
+
+bootJar {
+    enabled = true
+    mainClass = 'com.know.hexagonalarchitecture.HexagonalArchitectureApplication'
+}
+
+
+

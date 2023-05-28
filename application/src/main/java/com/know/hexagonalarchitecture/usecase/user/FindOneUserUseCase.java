@@ -6,12 +6,12 @@ import com.know.hexagonalarchitecture.user.ports.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FindOneUser {
+public class FindOneUserUseCase {
 
 
     private final UserRepository repository;
 
-    public FindOneUser(UserRepository userRepository){
+    public FindOneUserUseCase(UserRepository userRepository){
         this.repository=userRepository;
     }
 

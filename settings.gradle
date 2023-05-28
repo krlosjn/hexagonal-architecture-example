@@ -1,5 +1,5 @@
 rootProject.name = 'hexagonal-arquitecture'
 
-include ':infrastructure'
-include ':application'
 include ':domain'
+include ':application'
+include ':infrastructure'
