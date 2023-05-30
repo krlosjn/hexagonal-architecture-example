@@ -1,6 +1,4 @@
-package com.know.hexagonalarchitecture.helpers.buildersdto;
-
-import com.know.hexagonalarchitecture.helpers.dto.DetailDataDto;
+package com.know.hexagonalarchitecture.helpers.dto;
 
 public class DetailDataDtoBuilder {
 
@@ -12,23 +10,23 @@ public class DetailDataDtoBuilder {
     public DetailDataDtoBuilder(){}
 
 
-    public DetailDataDtoBuilder withType(String type){
+    protected DetailDataDtoBuilder withType(String type){
         this.type=type;
         return this;
     }
 
 
-    public DetailDataDtoBuilder withId(Object id){
+    protected DetailDataDtoBuilder withId(Object id){
         this.id=id;
         return this;
     }
 
-    public DetailDataDtoBuilder withAttributes(Object attributes){
+    protected DetailDataDtoBuilder withAttributes(Object attributes){
         this.attributes=attributes;
         return  this;
     }
 
-    public DetailDataDto build(){
+    protected DetailDataDto build(){
         return new DetailDataDto(type,id,attributes);
     }
 

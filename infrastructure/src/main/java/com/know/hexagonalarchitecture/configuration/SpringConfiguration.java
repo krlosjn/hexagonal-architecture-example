@@ -1,8 +1,8 @@
 package com.know.hexagonalarchitecture.configuration;
 
 
-import com.know.hexagonalarchitecture.helpers.buildersdto.DetailDataDtoBuilder;
-import com.know.hexagonalarchitecture.helpers.buildersdto.ObjectDtoBuilder;
+import com.know.hexagonalarchitecture.helpers.dto.DetailDataDtoBuilder;
+import com.know.hexagonalarchitecture.helpers.dto.ObjectDtoBuilder;
 import com.know.hexagonalarchitecture.helpers.dto.DataFactory;
 import com.know.hexagonalarchitecture.jparepository.DataMapper;
 import com.know.hexagonalarchitecture.product.model.ProductBuilder;

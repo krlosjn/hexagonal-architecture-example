@@ -1,8 +1,5 @@
  package com.know.hexagonalarchitecture.helpers.dto;
 
-import com.know.hexagonalarchitecture.helpers.buildersdto.DetailDataDtoBuilder;
-import com.know.hexagonalarchitecture.helpers.buildersdto.ObjectDtoBuilder;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +14,7 @@ public class DataFactory {
         this.detailObjectDtoBuilder=detailObjectDtoBuilder;
     }
 
-    public  ObjectDto buildResponse(String type, List<Object> responses, Object metaData){
+    public   ObjectDto buildResponse(String type, List<Object> responses, Object metaData){
         return objectDtoBuilder
                 .withData(responses.stream().map(resp->
                         detailObjectDtoBuilder.withType(type)
