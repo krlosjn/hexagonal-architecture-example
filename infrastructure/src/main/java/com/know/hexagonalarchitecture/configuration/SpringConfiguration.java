@@ -2,6 +2,7 @@ package com.know.hexagonalarchitecture.configuration;
 
 
 import com.know.hexagonalarchitecture.helpers.dto.DetailDataDtoBuilder;
+import com.know.hexagonalarchitecture.helpers.dto.DtoFactory;
 import com.know.hexagonalarchitecture.helpers.dto.ObjectDtoBuilder;
 import com.know.hexagonalarchitecture.helpers.dto.DataFactory;
 import com.know.hexagonalarchitecture.jparepository.DataMapper;
@@ -42,6 +43,7 @@ public class SpringConfiguration {
     public DataFactory generateDataFactory (ObjectDtoBuilder objectDtoBuilder, DetailDataDtoBuilder detailObjectDtoBuilder){
         return new DataFactory(objectDtoBuilder,detailObjectDtoBuilder);
     }
+
     @Bean
     public DeleteUserUseCaseDomain generateUseCaseDeleteDomain(UserRepository repository){
        return new DeleteUserUseCaseDomain(repository);

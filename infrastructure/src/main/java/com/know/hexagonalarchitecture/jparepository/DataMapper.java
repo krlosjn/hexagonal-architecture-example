@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class DataMapper {
     public DataMapper(){}
-    public static UserPerson toEntity(UserPersonData userPersonData)  {
+    public UserPerson toEntity(UserPersonData userPersonData)  {
 
        return new UserPersonBuilder().withId(userPersonData.getIdUser())
                 .withName(userPersonData.getName())
@@ -24,12 +24,13 @@ public class DataMapper {
                 .withDniUser(userPersonData.getDniUser())
                 .withProducts(Objects.isNull(userPersonData.getProducts()) || userPersonData.getProducts().isEmpty()
                        ? null
-                       : userPersonData.getProducts().stream().map(DataMapper::toEntity).collect(Collectors.toList())
+                       : userPersonData.getProducts().stream()
+                        .map(this::toEntity).collect(Collectors.toList())
                 )
                 .build();
     }
 
-    public static  UserPersonData toData(UserPerson userPerson){
+    public UserPersonData toData(UserPerson userPerson){
 
         UserPersonData data= new UserPersonData();
 
@@ -41,12 +42,12 @@ public class DataMapper {
         data.setDniUser(userPerson.getDniUser());
         data.setProducts(Objects.isNull(userPerson.getProducts()) || userPerson.getProducts().isEmpty()
                 ? null
-                : userPerson.getProducts().stream().map(DataMapper::toData).collect(Collectors.toList())
+                : userPerson.getProducts().stream().map(this::toData).collect(Collectors.toList())
         );
         return data;
     }
 
-    public static Product toEntity(ProductData data){
+    public Product toEntity(ProductData data){
         return  new ProductBuilder().withId(data.getIdProduct())
                 .withName(data.getName())
                 .withPrice(data.getPrice())
@@ -54,7 +55,7 @@ public class DataMapper {
                 .build();
     }
 
-    public static ProductData toData(Product product){
+    public ProductData toData(Product product){
 
         ProductData data= new ProductData();
         UserPersonData userPersonData = new UserPersonData();

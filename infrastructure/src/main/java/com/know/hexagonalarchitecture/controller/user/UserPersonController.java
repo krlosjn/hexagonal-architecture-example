@@ -24,11 +24,14 @@ public class UserPersonController {
     private final ListUsersUseCase listUsersUseCase;
     private final FindOneUserUseCase findOneUser;
     private final UpdateUserUseCase updateUserUseCase;
-    private final DataFactory dataFactory;
     private final DeleteUserUseCase deleteUserUseCase;
+    private final DataFactory dataFactory;
 
 
-    public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory, ListUsersUseCase listUsersUseCase, FindOneUserUseCase findOneUser, UpdateUserUseCase updateUserUseCase, DeleteUserUseCase deleteUserUseCase) {
+
+    public UserPersonController(UserSaveUseCase userSaveUseCase, DataFactory dataFactory,
+                                ListUsersUseCase listUsersUseCase, FindOneUserUseCase findOneUser,
+                                UpdateUserUseCase updateUserUseCase, DeleteUserUseCase deleteUserUseCase) {
         this.userSaveUseCase = userSaveUseCase;
         this.dataFactory = dataFactory;
         this.listUsersUseCase = listUsersUseCase;
@@ -40,7 +43,8 @@ public class UserPersonController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ObjectDto> saveUser(@RequestBody UserPersonDto userDto) throws Exception {
         return new ResponseEntity<>(this.dataFactory
-                .buildResponse("Usuarios", Collections.singletonList(this.userSaveUseCase.execute(createUser(userDto))), null),
+                .buildResponse("Usuarios", Collections.singletonList(this.userSaveUseCase.
+                        execute(createUser(userDto))), null),
                 HttpStatus.CREATED);
     }
 
@@ -51,15 +55,15 @@ public class UserPersonController {
                 .buildResponse("Consultar usuarios", Collections.singletonList(this.listUsersUseCase.execute()), null), HttpStatus.OK);
     }
 
-    /**REVISAR ESTE ENDPOITN**/
     @PutMapping(value="/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ObjectDto> updatingUser(@RequestBody UserPersonDto userDto, @PathVariable("id") Long id) throws BusinessException {
 
-        return new ResponseEntity<>(this.dataFactory.buildResponse("Usuario actualizado ", Arrays.asList(this.updateUserUseCase.execute(createUser(userDto),id)),null),HttpStatus.OK);
+        return new ResponseEntity<>(this.dataFactory.buildResponse("Usuario actualizado ", Arrays.asList(this.updateUserUseCase
+                .execute(createUser(userDto),id)),null),HttpStatus.OK);
     }
 
     @GetMapping(value="/detalle/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ObjectDto> listUserByName(@PathVariable(value="id") Long id){
+    public ResponseEntity<ObjectDto> listUser(@PathVariable(value="id") Long id){
 
         return new ResponseEntity<>( this.dataFactory
                 .buildResponse("Consultar usuarios", Collections.singletonList(this.findOneUser.execute(id)),null),HttpStatus.OK);

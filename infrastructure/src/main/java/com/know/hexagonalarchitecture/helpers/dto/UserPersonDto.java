@@ -11,20 +11,18 @@ public class UserPersonDto {
     private String lastName;
     private String numberDocument;
     private String typeDocument;
-    private String dniUser;
     private List<Product> products;
 
     public UserPersonDto(){
 
     }
 
-    public UserPersonDto(Long idUser, String name, String lastName, String numberDocument, String typeDocument, String dniUser, List<Product> products) {
+    public UserPersonDto(Long idUser, String name, String lastName, String numberDocument, String typeDocument, List<Product> products) {
         this.idUser = idUser;
         this.name = name;
         this.lastName = lastName;
         this.numberDocument = numberDocument;
         this.typeDocument = typeDocument;
-        this.dniUser = dniUser;
         this.products = products;
     }
 
@@ -66,14 +64,6 @@ public class UserPersonDto {
 
     public void setTypeDocument(String typeDocument) {
         this.typeDocument = typeDocument;
-    }
-
-    public String getDniUser() {
-        return dniUser;
-    }
-
-    public void setDniUser(String dniUser) {
-        this.dniUser = dniUser;
     }
 
     public List<Product> getProducts() {

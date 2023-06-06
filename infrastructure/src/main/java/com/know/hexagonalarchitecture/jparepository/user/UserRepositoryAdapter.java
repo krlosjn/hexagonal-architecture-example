@@ -32,12 +32,6 @@ public class UserRepositoryAdapter implements UserRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<UserPerson> listUsers2(){
-        return this.repository.findAll().stream()
-                .map(user->this.dataMapper.toEntity(user))
-                .collect(Collectors.toList());
-    }
-
     @Override
     public UserPerson saveUser(UserPerson user) {
         return this.dataMapper.toEntity(repository.save(this.dataMapper.toData(user)));

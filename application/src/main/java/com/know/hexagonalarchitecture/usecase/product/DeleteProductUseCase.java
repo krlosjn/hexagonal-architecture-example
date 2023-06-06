@@ -6,7 +6,6 @@ import com.know.hexagonalarchitecture.utils.exception.BusinessException;
 import org.springframework.stereotype.Service;
 
 @Service
-
 public class DeleteProductUseCase {
 
     private final DeleteProductUseCaseDomain deleteProductUseCaseDomain;

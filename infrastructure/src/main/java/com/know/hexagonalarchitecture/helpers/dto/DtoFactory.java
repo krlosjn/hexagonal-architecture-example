@@ -7,7 +7,7 @@ import com.know.hexagonalarchitecture.user.model.UserPersonBuilder;
 
 public class DtoFactory {
 
-    public static Product createProduct(ProductDto productDto){
+    public static  Product createProduct(ProductDto productDto){
         Product product = new ProductBuilder()
                 .withId(productDto.getIdProduct())
                 .withName(productDto.getName())
@@ -17,7 +17,7 @@ public class DtoFactory {
         return product;
     }
 
-    public static UserPerson createUser(UserPersonDto userDto){
+    public static  UserPerson createUser(UserPersonDto userDto){
         UserPerson user = new UserPersonBuilder()
                 .withId(userDto.getIdUser())
                 .withNmDocument(userDto.getNumberDocument())

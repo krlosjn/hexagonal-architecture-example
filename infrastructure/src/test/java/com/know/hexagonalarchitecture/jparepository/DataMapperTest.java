@@ -9,8 +9,6 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.know.hexagonalarchitecture.jparepository.DataMapper.toData;
-import static com.know.hexagonalarchitecture.jparepository.DataMapper.toEntity;
 import static org.junit.Assert.assertNotNull;
 
 public class DataMapperTest{
@@ -19,27 +17,30 @@ public class DataMapperTest{
     @Test
     public void shouldConvertEntity(){
         UserPersonData data = new UserPersonData();
+        DataMapper dataMapper= new DataMapper();
         data.setTypeDocument("C");
         data.setNumberDocument("1234567890");
-        assertNotNull(toEntity(data));
+        assertNotNull(dataMapper.toEntity(data));
     }
 
     @Test
     public void validateProductsIsNotEmpty(){
         UserPersonData data = new UserPersonData();
+        DataMapper dataMapper= new DataMapper();
         data.setTypeDocument("C");
         data.setNumberDocument("1234567890");
         data.setProducts(Arrays.asList(
-                toData(new ProductBuilder()
+                dataMapper.toData(new ProductBuilder()
                         .withId(1L)
                         .withIdUser(1L)
                         .withName("ss").build())));
 
-        assertNotNull(toEntity(data));
+        assertNotNull(dataMapper.toEntity(data));
     }
 
     @Test
     public void createDataProduct(){
+        DataMapper dataMapper= new DataMapper();
 
         Product product = new ProductBuilder()
                 .withId(1L)
@@ -48,17 +49,18 @@ public class DataMapperTest{
                 .withPrice(200.0)
                 .build();
 
-        assertNotNull(toData(product));
+        assertNotNull(dataMapper.toData(product));
     }
 
     @Test
     public void createDataUser(){
+        DataMapper dataMapper= new DataMapper();
 
         UserPerson userPerson = new UserPersonBuilder()
                 .withId(1L)
                 .withTypeDocument("C")
                 .withNmDocument("1234567890")
                 .build();
-        assertNotNull(toData(userPerson));
+        assertNotNull(dataMapper.toData(userPerson));
     }
 }
