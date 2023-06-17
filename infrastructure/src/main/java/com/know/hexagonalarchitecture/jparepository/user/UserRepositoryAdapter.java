@@ -54,15 +54,14 @@ public class UserRepositoryAdapter implements UserRepository {
     @Override
     public UserPerson updateUserPerson(UserPerson userPerson, Long id) {
 
-        UserPerson userUpdate = repository.findById(id).map(person->{
+       return repository.findById(id).map(person->{
             person.setName(userPerson.getName());
             person.setLastName(userPerson.getLastName());
             person.setDniUser(userPerson.getDniUser());
-            person.setProducts(userPerson.getProducts().stream().map(item->this.dataMapper.toData(item)).collect(Collectors.toList()));
+            person.setProducts(userPerson.getProducts().stream()
+                    .map(item->this.dataMapper.toData(item)).collect(Collectors.toList()));
             return dataMapper.toEntity(repository.save(person));
         }).orElse(null);
-
-        return userUpdate;
     }
 
     @Override
